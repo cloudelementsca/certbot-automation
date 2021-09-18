@@ -17,7 +17,6 @@ stages:
         targetType: filePath
         filePath: './service-provider/renew-cert.sh'
       enabled: false
-      dependsOn: Job_1
   - job: createCertPSJob
     displayName: 'Install Certbot, Create Certificate and Upload to KV'
     steps:
@@ -28,6 +27,7 @@ stages:
         targetFiles: '*'
         tokenPattern: rm
         enableTelemetry: false
+      enabled: true
     - task: AzurePowerShell@5
       displayName: 'Azure PowerShell script: FilePath'
       inputs:
@@ -35,3 +35,4 @@ stages:
         ScriptPath: 'azure/az-create-cert.ps1'
         errorActionPreference: continue
         azurePowerShellVersion: LatestVersion
+      enabled: true
