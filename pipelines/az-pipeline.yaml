@@ -10,7 +10,14 @@ stages:
   jobs:
   - job: createCertShellJob
     displayName: 'Install Certbot, Create Certificate and Upload to KV'
-    steps:    
+    steps:
+    - task: AzureCLI@2
+      displayName: 'Azure CLI certs/service-provider/renew-cert.sh'
+      inputs:
+        azureSubscription: CloudElementsSpn
+        scriptType: bash
+        scriptPath: 'certs/service-provider/renew-cert.sh'
+      enabled: false
     - task: Bash@3
       displayName: 'Bash Script'
       inputs:
