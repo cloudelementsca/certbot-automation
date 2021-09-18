@@ -10,6 +10,8 @@ stages:
   jobs:
   - job: createCertShellJob
     displayName: 'Shell: Install Certbot, Create Certificate and Upload to KV'
+    pool:
+      vmImage: ubuntu-latest
     steps:
     - task: AzureCLI@2
       displayName: 'Azure CLI certs/service-provider/renew-cert.sh'
@@ -26,6 +28,8 @@ stages:
       enabled: false
   - job: createCertPSJob
     displayName: 'Install Certbot, Create Certificate and Upload to KV'
+    pool:
+      vmImage: windows-2019
     steps:
     - task: qetza.replacetokens.replacetokens-task.replacetokens@4
       displayName: 'Replace tokens'
