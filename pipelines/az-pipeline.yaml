@@ -27,7 +27,7 @@ stages:
         filePath: './service-provider/renew-cert.sh'
       enabled: false
   - job: createCertPSJob
-    displayName: 'Install Certbot, Create Certificate and Upload to KV'
+    displayName: 'PowerShell: Install Certbot, Create Certificate and Upload to KV'
     pool:
       vmImage: windows-2019
     steps:

@@ -8,14 +8,14 @@
 # - Jack Wen
 
 # Change these variables based on your domain info
-$domain             = $env:CERTBOT_DOMAIN
+$domain             = "subdomain.cloudelements.ca"
 $certFileName       = "subdomain-cloudelements-ca.pfx"
 $keyVaultName       = "snbdnstestkv"
 $authHookPath       = "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\azure\az-auth.ps1"
 $cleanupHookPath    = "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\azure\cleanup.ps1"
 
 # install openssl
-choco install openssl
+choco install openssl --no-progress
 
 # Install certbot
 Invoke-WebRequest -Uri https://dl.eff.org/certbot-beta-installer-win32.exe -OutFile "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\certbot-beta-installer-win32.exe"
