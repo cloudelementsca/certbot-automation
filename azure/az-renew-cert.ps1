@@ -12,8 +12,8 @@ $domain             = "subdomain.cloudelements.ca"
 $certFileName       = "subdomain-cloudelements-ca.pfx"
 $email              = "nicholas.briglio@cloudelements.ca"
 $keyVaultName       = "snbdnstestkv"
-$authHookPath       = "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\az-auth.ps1"
-$cleanupHookPath    = "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\cleanup.ps1"
+$authHookPath       = "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\azure\az-auth.ps1"
+$cleanupHookPath    = "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\azure\cleanup.ps1"
 
 # install openssl
 choco install openssl
