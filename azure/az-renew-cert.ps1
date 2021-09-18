@@ -35,5 +35,5 @@ cd "C:\Certbot\live\$domain\"
 openssl pkcs12 -export -out $certFileName -inkey privkey.pem -in fullchain.pem -passout pass:__PKPWD__
 
 # Import certificate to KeyVault
-$Password = ConvertTo-SecureString -String __PKPWD__ -AsPlainText -Force
-Import-AzKeyVaultCertificate -VaultName $keyVaultName -Name $domain -FilePath $certFileName -Password $Password
+$password = ConvertTo-SecureString -String __PKPWD__ -AsPlainText -Force
+Import-AzKeyVaultCertificate -VaultName $keyVaultName -Name $domain -FilePath $certFileName -Password $password
