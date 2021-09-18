@@ -9,7 +9,7 @@
 
 # Change these variables based on your domain info
 $domain             = "subdomain.cloudelements.ca"
-$certFileName       = "subdomain-cloudelements-ca.pfx"
+$certFileName       = "subdomain-cloudelements-ca"
 $email              = "info@cloudelements.ca"
 $keyVaultName       = "snbdnstestkv"
 $authHookPath       = "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\azure\az-auth.ps1"
@@ -38,4 +38,4 @@ openssl pkcs12 -export -out $certFileName -inkey privkey.pem -in fullchain.pem -
 
 # Import certificate to KeyVault
 $password = ConvertTo-SecureString -String __PKPWD__ -AsPlainText -Force
-Import-AzKeyVaultCertificate -VaultName $keyVaultName -Name $domain -FilePath $certFileName -Password $password
+Import-AzKeyVaultCertificate -VaultName $keyVaultName -Name $certFileName -FilePath "$certFileName.pfx" -Password $password
