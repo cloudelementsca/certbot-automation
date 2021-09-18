@@ -37,5 +37,6 @@ cd "C:\Certbot\live\$domain\"
 openssl pkcs12 -export -out "$certFileName.pfx" -inkey privkey.pem -in fullchain.pem -passout pass:__PKPWD__
 
 # Import certificate to KeyVault
+# __PKPWD__ is a secret pipeline (group) variable whose value is mapped to a KV secret
 $password = ConvertTo-SecureString -String __PKPWD__ -AsPlainText -Force
 Import-AzKeyVaultCertificate -VaultName $keyVaultName -Name $certFileName -FilePath "$certFileName.pfx" -Password $password
