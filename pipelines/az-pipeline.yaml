@@ -9,7 +9,7 @@ stages:
   displayName: 'Create Certificate and Upload to KV'
   jobs:
   - job: createCertShellJob
-    displayName: 'Install Certbot, Create Certificate and Upload to KV'
+    displayName: 'Shell: Install Certbot, Create Certificate and Upload to KV'
     steps:
     - task: AzureCLI@2
       displayName: 'Azure CLI certs/service-provider/renew-cert.sh'
@@ -19,7 +19,7 @@ stages:
         scriptPath: 'certs/service-provider/renew-cert.sh'
       enabled: false
     - task: Bash@3
-      displayName: 'Bash Script'
+      displayName: 'Bash: Install Certbot, Create Certificate and Upload to KV'
       inputs:
         targetType: filePath
         filePath: './service-provider/renew-cert.sh'
