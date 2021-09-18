@@ -29,10 +29,9 @@ stages:
         enableTelemetry: false
       enabled: true
     - task: AzurePowerShell@5
-      displayName: 'Azure PowerShell script: FilePath'
+      displayName: 'PowerShell: Install Certbot, Create Certificate and Upload to KV'
       inputs:
         azureSubscription: 'CloudElementsSpn'
         ScriptPath: 'azure/az-create-cert.ps1'
-        errorActionPreference: continue
         azurePowerShellVersion: LatestVersion
       enabled: true
