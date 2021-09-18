@@ -34,7 +34,7 @@ cd "C:\Program Files (x86)\Certbot\bin"
 cd "C:\Certbot\live\$domain\"
 
 # Convert certificate to .pfx
-openssl pkcs12 -export -out $certFileName -inkey privkey.pem -in fullchain.pem -passout pass:__PKPWD__
+openssl pkcs12 -export -out "$certFileName.pfx" -inkey privkey.pem -in fullchain.pem -passout pass:__PKPWD__
 
 # Import certificate to KeyVault
 $password = ConvertTo-SecureString -String __PKPWD__ -AsPlainText -Force
