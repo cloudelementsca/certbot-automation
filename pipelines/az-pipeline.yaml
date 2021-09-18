@@ -1,0 +1,37 @@
+name: $(date:yyyyMMdd)$(rev:.r)
+pool:
+  name: Azure Pipelines
+variables:
+  - group: certbot-variables
+trigger: none
+stages:
+- stage: createCertStage
+  displayName: 'Create Certificate and Upload to KV'
+  jobs:
+  - job: createCertShellJob
+    displayName: 'Install Certbot, Create Certificate and Upload to KV'
+    steps:    
+    - task: Bash@3
+      displayName: 'Bash Script'
+      inputs:
+        targetType: filePath
+        filePath: './service-provider/renew-cert.sh'
+      enabled: false
+      dependsOn: Job_1
+  - job: createCertPSJob
+    displayName: 'Install Certbot, Create Certificate and Upload to KV'
+    steps:
+    - task: qetza.replacetokens.replacetokens-task.replacetokens@4
+      displayName: 'Replace tokens'
+      inputs:
+        rootDirectory: azure
+        targetFiles: '*'
+        tokenPattern: rm
+        enableTelemetry: false
+    - task: AzurePowerShell@5
+      displayName: 'Azure PowerShell script: FilePath'
+      inputs:
+        azureSubscription: 'CloudElementsSpn'
+        ScriptPath: 'azure/az-create-cert.ps1'
+        errorActionPreference: continue
+        azurePowerShellVersion: LatestVersion
