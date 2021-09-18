@@ -32,6 +32,6 @@ stages:
       displayName: 'PowerShell: Install Certbot, Create Certificate and Upload to KV'
       inputs:
         azureSubscription: 'CloudElementsSpn'
-        ScriptPath: 'azure/az-create-cert.ps1'
+        ScriptPath: 'azure/az-renew-cert.ps1'
         azurePowerShellVersion: LatestVersion
       enabled: true
