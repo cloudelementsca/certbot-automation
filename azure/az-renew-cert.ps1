@@ -10,6 +10,7 @@
 # Change these variables based on your domain info
 $domain             = "subdomain.cloudelements.ca"
 $certFileName       = "subdomain-cloudelements-ca.pfx"
+$email              = "info@cloudelements.ca"
 $keyVaultName       = "snbdnstestkv"
 $authHookPath       = "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\azure\az-auth.ps1"
 $cleanupHookPath    = "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\azure\cleanup.ps1"
@@ -28,7 +29,7 @@ Start-Process -Wait -FilePath ".\certbot-beta-installer-win32.exe" -ArgumentList
 cd "C:\Program Files (x86)\Certbot\bin"
 
 # Request a new certificate
-.\certbot.exe certonly --manual --preferred-challenges=dns --manual-auth-hook $authHookPath -d $domain --manual-cleanup-hook $cleanupHookPath --agree-tos -n
+.\certbot.exe certonly --manual --preferred-challenges=dns --manual-auth-hook $authHookPath -d $domain --email $email --manual-cleanup-hook $cleanupHookPath --agree-tos -n
 
 cd "C:\Certbot\live\$domain\"
 
