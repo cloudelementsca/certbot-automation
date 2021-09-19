@@ -14,11 +14,21 @@ secret="__dns_provider_secret__"
 # Authorization header
 headers="Authorization: sso-key $key:$secret"
 
-# Domain value from certbot command
-domain=$CERTBOT_DOMAIN
+domain=$(expr match "$CERTBOT_DOMAIN" '.*\.\(.*\..*\)')
 
-# TXT record name and type
-txt_name="_acme-challenge"  
+if [ -z "$domain" ];
+then
+  # top level
+  txt_name="_acme-challenge"
+  domain=$CERTBOT_DOMAIN
+else
+  # return the first section
+  subdomain=$(expr match $CERTBOT_DOMAIN '\(.*\)\..*\..*')
+
+  # txt name needs to be following the _acme-challenge.test1 pattern, not _acme-challenge.test1.mydomain.com
+  txt_name="_acme-challenge.$subdomain"
+fi
+
 record_type="TXT"
 
 # GoDaddy delete API
