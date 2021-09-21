@@ -8,4 +8,4 @@
 # - Jack Wen
 
 # Remove the _acme-challenge TXT record after the domain has been verified and certificate has been generated
-Remove-AzDnsRecordSet -Name "_acme-challenge" -RecordType TXT -ZoneName "subdomain.cloudelements.ca" -ResourceGroupName "DNSTestRg"
+Remove-AzDnsRecordSet -Name $env:TXT_NAME -RecordType TXT -ZoneName $env:CERTBOT_DOMAIN -ResourceGroupName $env:AZ_DNS_RG_NAME

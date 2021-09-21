@@ -14,6 +14,8 @@ $email              = "info@cloudelements.ca"
 $keyVaultName       = "snbdnstestkv"
 $authHookPath       = "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\azure\az-auth.ps1"
 $cleanupHookPath    = "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\azure\cleanup.ps1"
+$env:AZ_DNS_RG_NAME = "DNSTestRg"
+$env:TXT_NAME       = "_acme-challenge"
 
 # install openssl
 choco install openssl --no-progress
