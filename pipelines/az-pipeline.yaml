@@ -3,7 +3,10 @@ pool:
   name: Azure Pipelines
 variables:
   - group: certbot-variables
-trigger: none
+  - name: serviceConnection
+    value: "CloudElementsSpn"
+schedules:
+- cron: "0 0 */60 * *"
 stages:
 - stage: createCertStage
   displayName: 'Create Certificate and Upload to KV'
@@ -13,18 +16,20 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
+    - task: qetza.replacetokens.replacetokens-task.replacetokens@4
+      displayName: 'Replace tokens'
+      inputs:
+        rootDirectory: service-provider
+        targetFiles: '*'
+        tokenPattern: rm
+        enableTelemetry: false
+      enabled: false    
     - task: AzureCLI@2
-      displayName: 'Azure CLI certs/service-provider/renew-cert.sh'
+      displayName: 'Azure CLI service-provider/renew-cert.sh'
       inputs:
-        azureSubscription: CloudElementsSpn
+        azureSubscription: $(serviceConnection)
         scriptType: bash
-        scriptPath: 'certs/service-provider/renew-cert.sh'
-      enabled: false
-    - task: Bash@3
-      displayName: 'Bash: Install Certbot, Create Certificate and Upload to KV'
-      inputs:
-        targetType: filePath
-        filePath: './service-provider/renew-cert.sh'
+        scriptPath: 'service-provider/renew-cert.sh'
       enabled: false
   - job: createCertPSJob
     displayName: 'PowerShell: Install Certbot, Create Certificate and Upload to KV'
@@ -42,7 +47,7 @@ stages:
     - task: AzurePowerShell@5
       displayName: 'PowerShell: Install Certbot, Create Certificate and Upload to KV'
       inputs:
-        azureSubscription: 'CloudElementsSpn'
+        azureSubscription: $(serviceConnection)
         ScriptPath: 'azure/az-renew-cert.ps1'
         azurePowerShellVersion: LatestVersion
       enabled: true
