@@ -9,7 +9,7 @@
 
 # Change these variables based on your domain info
 domain="test6.cloudelements.ca"
-email="nicholas.briglio@cloudelements.ca"
+email="info@cloudelements.ca"
 privkeypath="/etc/letsencrypt/live/$domain/privkey.pem"
 fullchainpath="/etc/letsencrypt/live/$domain/fullchain.pem"
 certFileName="test6-cloudelements-ca.pfx"
