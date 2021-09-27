@@ -26,7 +26,7 @@ Invoke-WebRequest -Uri https://dl.eff.org/certbot-beta-installer-win32.exe -OutF
 cd $($env:SYSTEM_DEFAULTWORKINGDIRECTORY)
 
 # /D not working
-Start-Process -Wait -FilePath ".\certbot-beta-installer-win32.exe" -ArgumentList "/S /D=$env:SYSTEM_DEFAULTWORKINGDIRECTORY" -PassThru
+Start-Process -Wait -FilePath ".\certbot-beta-installer-win32.exe" -ArgumentList "/S" -PassThru
 
 cd "C:\Program Files (x86)\Certbot\bin"
 
