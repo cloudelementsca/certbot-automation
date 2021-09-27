@@ -9,7 +9,8 @@ schedules:
 - cron: "0 0 */60 * *"
   displayName: string
   branches:
-      include: main
+    include: 
+    - main
 stages:
 - stage: createCertStage
   displayName: 'Create Certificate and Upload to KV'
