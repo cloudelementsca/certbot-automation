@@ -6,11 +6,12 @@ variables:
   - name: serviceConnection
     value: "CloudElementsSpn"
 schedules:
-- cron: "0 0 */60 * *"
+- cron: "0 0 1 */2 *"
   displayName: string
   branches:
     include: 
     - main
+  always: true
 stages:
 - stage: createCertStage
   displayName: 'Create Certificate and Upload to KV'
