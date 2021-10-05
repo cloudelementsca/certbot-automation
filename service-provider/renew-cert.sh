@@ -8,15 +8,15 @@
 # - Nicholas Briglio
 
 # Change these variables based on your domain info
-domain="test6.cloudelements.ca"
+domain="subdomain.cloudelements.ca"
 email="info@cloudelements.ca"
 privkeypath="/etc/letsencrypt/live/$domain/privkey.pem"
 fullchainpath="/etc/letsencrypt/live/$domain/fullchain.pem"
-certFileName="test6-cloudelements-ca.pfx"
+certFileName="subdomain-cloudelements-ca.pfx"
 vaultname="snbdnstestkv"
-cert_name="test6-cloudelements-ca"
-authHookPath="certs/service-provider/godaddy-auth.sh"
-cleanupHookPath="certs/service-provider/cleanup.sh"
+cert_name="subdomain-cloudelements-ca"
+authHookPath="service-provider/godaddy-auth.sh"
+cleanupHookPath="service-provider/cleanup.sh"
 
 # Setup certbot in agent
 # Ensure that your version of snapd is up to date
