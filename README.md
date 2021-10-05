@@ -57,4 +57,7 @@ The `service-provider/` folder contains shell scripts that will request a certif
 - removes the TXT record that was added from the `--manual-auth-hook`
 
 # Pipeline
-The Azure DevOps pipeline is split into 2 jobs separating the [GoDaddy](#godaddy) and [Azure DNS Zone](#azure-dns-zone) tasks. The service principal (service connection) used to run the pipeline must have at least contributor on the Azure DNS Zone, and import permissions in the Azure KeyVault access policies. Replace the `serviceConnection` variable with the name of your service connection. The pipeline uses a variable group containing a secret variable with the password for the private key. The replace token task is configured to replace tokens with pattern `__<variable>__` in all files in the folder.
+- The Azure DevOps pipeline is split into 2 jobs separating the [GoDaddy](#godaddy) and [Azure DNS Zone](#azure-dns-zone) tasks. 
+- The service principal (service connection) used to run the pipeline must have at least contributor on the Azure DNS Zone, and import permissions in the Azure KeyVault access policies. 
+- Replace the `serviceConnection` variable with the name of your service connection. 
+- The pipeline uses a variable group containing a secret variable with the password for the private key. The replace token task is configured to replace tokens with pattern `__<variable>__` in all files in the folder matching variable names.
