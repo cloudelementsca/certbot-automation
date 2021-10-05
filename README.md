@@ -7,7 +7,7 @@ It covers two scenarios:
 - Create Let's Encrypt certificate using Certbot and deploy to Azure KeyVault with GoDaddy
 
 # Prerequisites
-## Azure
+## Azure DNS Zone
 ### Azure Resources
 - Azure DNS Zone
 - Azure KeyVault
@@ -18,7 +18,9 @@ It covers two scenarios:
 ## Service Providers 
 ### GoDaddy
 - [Developer account with API credentials](https://developer.godaddy.com/) from GoDaddy
-- Azure KeyVault
+
+### Azure Resources
+- Azure KeyVault with import permissions access policy
 
 # Azure DNS Zone
 The `azure/` folder contains PowerShell scripts that will request a certificate from Let's Encrypt using certbot on a Windows Agent, and update an Azure DNS Zone with the required TXT record. 
@@ -44,7 +46,7 @@ The `service-provider/` folder contains shell scripts that will request a certif
 `renew-cert.sh` 
 - installs certbot via snap
 - runs certbot command to create certificate
-  - uploads certificate to keyvault
+- uploads certificate to keyvault
 
 `godaddy-auth.sh` 
 - runs before certbot tries to validate the domain via the `--manual-auth-hook` flag
@@ -55,4 +57,4 @@ The `service-provider/` folder contains shell scripts that will request a certif
 - removes the TXT record that was added from the `--manual-auth-hook`
 
 # Pipeline
-The Azure DevOps pipeline is split into 2 jobs separating the [GoDaddy](#godaddy) and [Azure DNS Zone](#azure-dns-zone) tasks. The service principal (service connection) used to run the pipeline must have at least contributor on the Azure DNS Zone. Replace the `serviceConnection` variable with the name of your service connection. The pipeline uses a variable group containing a secret variable with the password for the private key. The replace token task is configured to replace tokens with pattern `__<variable>__` in all files in the folder.
+The Azure DevOps pipeline is split into 2 jobs separating the [GoDaddy](#godaddy) and [Azure DNS Zone](#azure-dns-zone) tasks. The service principal (service connection) used to run the pipeline must have at least contributor on the Azure DNS Zone, and import permissions in the Azure KeyVault access policies. Replace the `serviceConnection` variable with the name of your service connection. The pipeline uses a variable group containing a secret variable with the password for the private key. The replace token task is configured to replace tokens with pattern `__<variable>__` in all files in the folder.
