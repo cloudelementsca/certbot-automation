@@ -29,7 +29,7 @@ The `azure/` folder contains PowerShell scripts that will request a certificate 
 - installs certbot
 - installs openssl with chocolatey
 - runs certbot command to create certificate
-- uploads certificate to keyvault
+- imports certificate to keyvault
 
 `az-auth.ps1` 
 - runs before certbot tries to validate the domain via the `--manual-auth-hook` flag
@@ -46,7 +46,7 @@ The `service-provider/` folder contains shell scripts that will request a certif
 `renew-cert.sh` 
 - installs certbot via snap
 - runs certbot command to create certificate
-- uploads certificate to keyvault
+- imports certificate to keyvault
 
 `godaddy-auth.sh` 
 - runs before certbot tries to validate the domain via the `--manual-auth-hook` flag
